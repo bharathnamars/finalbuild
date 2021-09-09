@@ -60,8 +60,14 @@ public class SellerService {
 
 	// Delete Seller
 	public void deleteSeller(String sellerid) throws InfyMarketException {
+		if(sellerid !=null) {
 		Optional<Seller> seller = sellerrepo.findById(sellerid);
-		seller.orElseThrow(() -> new InfyMarketException("Service.SELLERS_NOT_FOUND"));
+		
+		//seller.orElseThrow(() -> new InfyMarketException("Service.SELLERS_NOT_FOUND"));
 		sellerrepo.deleteById(sellerid);
+	}else {
+			throw new InfyMarketException("Service.SELLERS_NOT_FOUND");
+		}
 	}
 }
+

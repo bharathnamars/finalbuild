@@ -87,9 +87,13 @@ public class BuyerService {
 
 	//Delete buyer
 	public void deleteBuyer(String buyerid) throws InfyMarketException {
+		if(buyerid != null) {
 		Optional<Buyer> buyer = buyerrepo.findById(buyerid);
-		buyer.orElseThrow(() -> new InfyMarketException("Service.BUYERS_NOT_FOUND"));
+		//buyer.orElseThrow(() -> new InfyMarketException("Service.BUYERS_NOT_FOUND"));
 		buyerrepo.deleteById(buyerid);
+		}else {
+			throw  new InfyMarketException("Service.BUYERS_NOT_FOUND");
+		}
 	}
 
 //	//Get wishlist of buyer
@@ -119,9 +123,13 @@ public class BuyerService {
 
 	//Delete product from wishlist
 	public void deleteWishlist(String buyerid) throws InfyMarketException {
+		if(buyerid != null) {
 		Optional<Wishlist> buyer = wishrepo.findById(buyerid);
-		buyer.orElseThrow(() -> new InfyMarketException("Service.Buyer_NOT_FOUND"));
+		//buyer.orElseThrow(() -> new InfyMarketException("Service.Buyer_NOT_FOUND"));
 		wishrepo.deleteById(buyerid);
+		}else {
+			throw new InfyMarketException("Service.Buyer_NOT_FOUND");
+		}
 	}
 	
 	//Add product to cart
@@ -139,9 +147,14 @@ public class BuyerService {
 
 	//Delete product from cart
 	public void deleteCart(String buyerid) throws InfyMarketException {
+		if(buyerid != null) {
 		Optional<Cart> buyer = cartrepo.findById(buyerid);
-		buyer.orElseThrow(() -> new InfyMarketException("Service.Buyer_NOT_FOUND"));
+		//buyer.orElseThrow(() -> new InfyMarketException("Service.Buyer_NOT_FOUND"));
+		
 		cartrepo.deleteById(buyerid);
+		}else {
+			throw new InfyMarketException("Service.Buyer_NOT_FOUND");
+		}
 	}
 
 	//Update isprivileged
